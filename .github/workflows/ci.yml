@@ -21,10 +21,16 @@ jobs:
       - name: Instalar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22
+          node-version: 22.14.0
 
       - name: Instalar dependencias
         run: npm install
 
+      - name: Verificar instalación de Jest
+        run: npx jest --version
+
+      - name: Dar permisos a Jest
+        run: chmod +x ./node_modules/.bin/jest || true
+
       - name: Ejecutar pruebas
-        run: npm test
+        run: npx jest
